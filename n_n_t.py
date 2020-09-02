@@ -28,3 +28,14 @@ model = keras.Sequential([
     keras.layers.Dense(128, activation="relu"),  # hidden layer, with 'rectified linear unit' activation function
     keras.layers.Dense(10, activation="softmax")  # output layer
 ])
+
+# setting up some parameters for our model
+model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+# adam is typical optimizer, loss function can vary based on our application
+
+# training our model
+model.fit(train_images, train_labels, epochs=10)  # epochs is how many times it's gonna see the  same image
+
+# testing our model
+test_loss, test_acc = model.evaluate(test_images, test_labels)
+print("\n", "Test accuracy:", test_acc)
